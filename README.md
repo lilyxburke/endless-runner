@@ -1,1 +1,1 @@
-# endless-runner
+# Endless-runner-game
