@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BrickMovement : MonoBehaviour
 {
-    public float moveSpeed = 4;
+    public float moveSpeed = 6;
     public float deletion = -10;
 
     // Start is called before the first frame update

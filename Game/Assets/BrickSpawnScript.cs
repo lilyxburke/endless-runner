@@ -13,9 +13,9 @@ public class BrickSpawnScript : MonoBehaviour
     public Transform transformVariable;
 
     //should be decimal
-    public float spawnRate = 2;
+    public float spawnRate = 1;
     private float timer = 0;
-    public float spawnOffset = 5;
+    public float spawnOffset = 4;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,8 +63,9 @@ public class BrickSpawnScript : MonoBehaviour
 
         float smallestDistance = transform.position.x - spawnOffset;
         float largestDistance = transform.position.x + spawnOffset;
-        
-        Debug.Log(brick.transform.position);
-        Instantiate(brick, new Vector3(Random.Range(smallestDistance,largestDistance), transform.position.y, 0), transform.rotation);
+
+        float x = Random.Range(smallestDistance, largestDistance);
+  
+        Instantiate(brick, new Vector3(x, transform.position.y, 0), transform.rotation);
     }
 }
