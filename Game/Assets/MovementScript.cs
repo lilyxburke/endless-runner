@@ -41,7 +41,6 @@ public class JumpScript : MonoBehaviour
         {
             jumpCount = 0;
         }
-
         else if (collision.gameObject.CompareTag("Block"))
         {
             if (logic.hearts > 0)
@@ -68,6 +67,7 @@ public class JumpScript : MonoBehaviour
         Physics2D.IgnoreLayerCollision(8, 9, false);
         mySpriteRenderer.color = new Color(1f, 1f, 1f, 1f);
     }
+
     bool isDoubleJumping()
     {
         if(jumpCount == 2)

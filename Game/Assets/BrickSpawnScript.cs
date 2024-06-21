@@ -11,18 +11,17 @@ public class BrickSpawnScript : MonoBehaviour
     public GameObject doubleSingleBrick;
     public GameObject longBrick;
     public Transform transformVariable;
+    public bool stopSpawn;
 
-    //should be decimal
     public float spawnRate = 1;
     private float timer = 0;
     public float spawnOffset = 4;
-    // Start is called before the first frame update
+
     void Start()
     {
         spawnBrick();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -31,8 +30,11 @@ public class BrickSpawnScript : MonoBehaviour
             timer += Time.deltaTime;
         }else
         {
-            spawnBrick();
-            timer = 0;
+            if (!stopSpawn)
+            {
+                spawnBrick();
+                timer = 0;
+            }
         }
 
     }
