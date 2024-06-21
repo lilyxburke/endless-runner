@@ -9,11 +9,19 @@ public class LogicScript : MonoBehaviour
     public int score;
     public Text scoreText;
     public GameObject gameOverScreen;
+    public int hearts = 3;
+    public Text heartsText;
 
     public void addScore(int value)
     {
         score += value;
         scoreText.text = score.ToString();
+    }
+
+    public void loseHearts(int value)
+    {
+        hearts -= value;
+        heartsText.text = "Hearts: " + hearts.ToString();
     }
 
     public void restartGame()

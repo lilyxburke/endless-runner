@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4925947296652082142}
   - component: {fileID: 2608815294850977779}
   - component: {fileID: -7264634857765862061}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: longBrick
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 7570516137382663013}
   - component: {fileID: 7735265440142208166}
   - component: {fileID: 6166344876804519250}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Above
   m_TagString: Untagged
   m_Icon: {fileID: 0}

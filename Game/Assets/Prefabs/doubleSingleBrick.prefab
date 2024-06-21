@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2845012217050452368}
   - component: {fileID: 4959896837526341682}
   - component: {fileID: 4443711797772684061}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: doubleSingleBrick
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 619885797893626292}
   - component: {fileID: 6650530910183893301}
   - component: {fileID: 3267005588891838685}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Above
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,3 +236,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c3dd5609f1de044850d5428a5d12dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  logic: {fileID: 0}
