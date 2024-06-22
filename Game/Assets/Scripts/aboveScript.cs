@@ -15,4 +15,5 @@ public class aboveScript : MonoBehaviour
     {
         logic.addScore(1);
     }
+
 }

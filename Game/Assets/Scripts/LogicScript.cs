@@ -21,6 +21,7 @@ public class LogicScript : MonoBehaviour
 
     public void addScore(int value)
     {
+ 
         dingSFX.Play();
         score += value;
         scoreText.text = score.ToString();
