@@ -1,10 +1,11 @@
 using UnityEngine;
+using System.Collections;
 
 public class aboveScript : MonoBehaviour
 {
     public LogicScript logic;
-    
-    void Start()
+
+    void Awake()
     {
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
     }
@@ -12,6 +13,8 @@ public class aboveScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         logic.addScore(1);
+
+
     }
 
 }

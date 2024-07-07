@@ -15,7 +15,7 @@ public class MovementScript : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float cooldown;
 
-    void Start()
+    void Awake()
     {
         myRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
@@ -41,7 +41,7 @@ public class MovementScript : MonoBehaviour
             jumpCount = 0;
         }
         else if (collision.gameObject.CompareTag("Block"))
-        {
+        { 
             if (logic.hearts > 0)
             {
                 logic.loseHearts(1);
@@ -53,7 +53,6 @@ public class MovementScript : MonoBehaviour
                 logic.gameOver();
                 alive = false;
             }
-            
         }
     }
 
@@ -78,4 +77,5 @@ public class MovementScript : MonoBehaviour
             return false;   
         }
     }
+
 }

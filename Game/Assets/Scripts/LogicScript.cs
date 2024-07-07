@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class LogicScript : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class LogicScript : MonoBehaviour
     public int hearts = 3;
     public Text heartsText;
     public Text highScoreText;
-    public int highScore;
+    private int highScore;
     public BrickSpawnScript spawnScript;
     public AudioSource dingSFX;
 
@@ -23,7 +24,6 @@ public class LogicScript : MonoBehaviour
 
     public void addScore(int value)
     {
- 
         dingSFX.Play();
         score += value;
         scoreText.text = score.ToString();

@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 public class BrickSpawnScript : MonoBehaviour
@@ -66,7 +68,30 @@ public class BrickSpawnScript : MonoBehaviour
         float largestDistance = transform.position.x + spawnOffset;
 
         float x = Random.Range(smallestDistance, largestDistance);
-  
-        Instantiate(brick, new Vector3(x, transform.position.y, 0), transform.rotation);
+
+        Vector3 spawnPosition = new Vector3(x, transform.position.y, 0);
+        while (!CanSpawnHere(spawnPosition))
+        {
+            
+            spawnPosition = new Vector3(x-1f, transform.position.y, 0);
+
+            CanSpawnHere(spawnPosition);
+        }
+        Instantiate(brick, spawnPosition, transform.rotation);
+
+    }
+
+    public bool CanSpawnHere(Vector3 spawnPosition)
+    {
+
+        Collider2D[] intersect = Physics2D.OverlapCircleAll(spawnPosition, 0.2f);
+        if(intersect.Length == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
