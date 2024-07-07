@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -11,12 +9,16 @@ public class LogicScript : MonoBehaviour
     public GameObject gameOverScreen;
     public int hearts = 3;
     public Text heartsText;
+    public Text highScoreText;
+    public int highScore;
     public BrickSpawnScript spawnScript;
     public AudioSource dingSFX;
 
     void Start()
     {
         spawnScript = GameObject.FindGameObjectWithTag("Spawn").GetComponent<BrickSpawnScript>();
+        highScore = PlayerPrefs.GetInt("HighScore");
+        highScoreText.text = "High Score: " + highScore.ToString();
     }
 
     public void addScore(int value)
@@ -46,6 +48,15 @@ public class LogicScript : MonoBehaviour
         spawnScript.stopSpawn = true;
         scoreText.enabled = false;
         heartsText.enabled = false;
+        changeHighScore();
+    }
+
+    public void changeHighScore()
+    {
+        if (score > highScore)
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+        }
     }
 
     public void quitGame()
