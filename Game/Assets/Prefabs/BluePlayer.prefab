@@ -168,3 +168,4 @@ MonoBehaviour:
   logic: {fileID: 0}
   fallMultiplier: 2
   cooldown: 2
+  transformVariable: {fileID: 3268671171172585482}

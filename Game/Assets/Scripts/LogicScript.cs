@@ -14,6 +14,7 @@ public class LogicScript : MonoBehaviour
     private int highScore;
     public BrickSpawnScript spawnScript;
     public AudioSource dingSFX;
+    public BrickMovement movementScript;
 
     void Start()
     {
@@ -27,10 +28,13 @@ public class LogicScript : MonoBehaviour
         dingSFX.Play();
         score += value;
         scoreText.text = score.ToString();
+        spawnScript.IncreaseSpeed();
+
     }
 
     public void loseHearts(int value)
     {
+
         hearts -= value;
         heartsText.text = "Hearts: " + hearts.ToString();
     }
@@ -49,6 +53,11 @@ public class LogicScript : MonoBehaviour
         scoreText.enabled = false;
         heartsText.enabled = false;
         changeHighScore();
+        GameObject[] blocks = GameObject.FindGameObjectsWithTag("Block");
+        foreach (GameObject block in blocks)
+        {
+            Destroy(block);
+        }
     }
 
     public void changeHighScore()

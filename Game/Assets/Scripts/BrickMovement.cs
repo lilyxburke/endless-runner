@@ -2,8 +2,14 @@ using UnityEngine;
 
 public class BrickMovement : MonoBehaviour
 {
-    public float moveSpeed = 6;
+    public float moveSpeed;
     public float deletion = -10;
+    public BrickSpawnScript spawnScript;
+
+    void Awake()
+    {
+        spawnScript = GameObject.FindGameObjectWithTag("Spawn").GetComponent<BrickSpawnScript>();
+    }
     void Update()
     {
         transform.position = transform.position + (Vector3.left * moveSpeed) * Time.deltaTime;
@@ -11,5 +17,6 @@ public class BrickMovement : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        moveSpeed = spawnScript.moveSpeed;
     }
 }

@@ -14,6 +14,7 @@ public class MovementScript : MonoBehaviour
     private bool alive = true;
     public float fallMultiplier = 2.5f;
     public float cooldown;
+    public Transform transformVariable;
 
     void Awake()
     {
@@ -31,6 +32,10 @@ public class MovementScript : MonoBehaviour
         {
             myRigidBody.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
+        if(transform.position.x != 4.38f)
+        {
+            transformVariable.position = new Vector3(-4.38f, transform.position.y, transform.position.z);
+        }
 
     }
 
@@ -45,6 +50,7 @@ public class MovementScript : MonoBehaviour
             if (logic.hearts > 0)
             {
                 logic.loseHearts(1);
+
                 StartCoroutine(GiveInvincibility());
             }
              

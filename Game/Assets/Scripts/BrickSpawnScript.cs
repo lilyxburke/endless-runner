@@ -1,6 +1,4 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 public class BrickSpawnScript : MonoBehaviour
@@ -17,9 +15,12 @@ public class BrickSpawnScript : MonoBehaviour
     public float spawnRate = 1;
     private float timer = 0;
     public float spawnOffset = 4;
+    public LogicScript logic;
+    public float moveSpeed = 4;
 
     void Start()
     {
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
         spawnBrick();
     }
 
@@ -92,6 +93,13 @@ public class BrickSpawnScript : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+    public void IncreaseSpeed()
+    {
+        if (logic.score % 15 == 0 && logic.score != 0)
+        {
+            moveSpeed += 1.5f;
         }
     }
 }
