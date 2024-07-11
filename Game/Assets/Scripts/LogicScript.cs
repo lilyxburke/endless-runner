@@ -20,7 +20,7 @@ public class LogicScript : MonoBehaviour
     {
         spawnScript = GameObject.FindGameObjectWithTag("Spawn").GetComponent<BrickSpawnScript>();
         highScore = PlayerPrefs.GetInt("HighScore");
-        highScoreText.text = "High Score: " + highScore.ToString();
+        highScoreText.text = "HI " + highScore.ToString();
     }
 
     public void addScore(int value)
@@ -34,7 +34,6 @@ public class LogicScript : MonoBehaviour
 
     public void loseHearts(int value)
     {
-
         hearts -= value;
         heartsText.text = "Hearts: " + hearts.ToString();
     }
@@ -52,6 +51,7 @@ public class LogicScript : MonoBehaviour
         spawnScript.stopSpawn = true;
         scoreText.enabled = false;
         heartsText.enabled = false;
+        highScoreText.enabled = false;
         changeHighScore();
         GameObject[] blocks = GameObject.FindGameObjectsWithTag("Block");
         foreach (GameObject block in blocks)
