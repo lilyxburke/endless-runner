@@ -1,20 +1,25 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class PlayerScript : MonoBehaviour
 {
-    public int health;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite[] characters;
     [SerializeField] private Transform transformVariable;
     [SerializeField] private Rigidbody2D myRigidBody;
+
+    public int health = 3;
     [SerializeField] private float jumpStrength = 5.5f;
     [SerializeField] private int jumpCount = 0;
     [SerializeField] private bool alive = true;
     [SerializeField] private float fallMultiplier = 2.5f;
     [SerializeField] private float cooldown = 2;
     [SerializeField] private bool invincible = false;
+
+    [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private InputAction touchAction;
 
     public static PlayerScript instance { get; private set; }
     public static PlayerScript Instance
@@ -30,10 +35,38 @@ public class PlayerScript : MonoBehaviour
         {
             instance = this;
         }
+        touchAction = playerInput.actions["Jump"];
     }
     void Start()
     {
         spriteRenderer.sprite = characters[PlayerPrefs.GetInt("SelectedCharacter")];
+    }
+
+    void OnEnable()
+    {
+        touchAction.Enable();
+        touchAction.performed += JumpPressed;
+    }
+
+    void OnDisable()
+    {
+        touchAction.Disable();
+        touchAction.performed -= JumpPressed;
+    }
+
+    private void JumpPressed(InputAction.CallbackContext context)
+    {
+        float pressed = context.ReadValue<float>();
+        if (pressed > 0.5f && jumpCount < 2 && alive)
+        {
+ 
+            myRigidBody.velocity = Vector2.up * jumpStrength;
+            jumpCount++;
+        }
+        if (myRigidBody.velocity.y < 0)
+        {
+            myRigidBody.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
     }
 
     void OnDrawGizmos()
@@ -45,14 +78,13 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         Vector2 position = new Vector2(transformVariable.position.x, transformVariable.position.y);
-        Jump();
         Collider2D[] results = Physics2D.OverlapCircleAll(position, 0.45f);
         if (!invincible)
         {
             foreach (Collider2D collider in results)
             {
                 GameObject obj = collider.transform.gameObject;
-                if (obj.layer == 3 && alive)
+                if (obj.layer == 3 && alive && jumpCount == 2)
                 {
                     jumpCount = 0;
                 }
@@ -87,30 +119,6 @@ public class PlayerScript : MonoBehaviour
         Physics2D.IgnoreLayerCollision(8, 9, false);
         spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
         invincible = false;
-    }
-
-    private void Jump()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && !IsDoubleJumping() && alive)
-        {
-            myRigidBody.velocity = Vector2.up * jumpStrength;
-            jumpCount++;
-        }
-        if (myRigidBody.velocity.y < 0)
-        {
-            myRigidBody.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-        }
-    }
-    bool IsDoubleJumping()
-    {
-        if (jumpCount == 2)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 
     public void LoseHealth(int heart)
