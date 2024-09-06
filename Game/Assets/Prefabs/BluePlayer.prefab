@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8380602477846467671}
   - component: {fileID: 6332119305385865987}
   - component: {fileID: 842218326068427415}
-  - component: {fileID: 2499567519384580820}
   m_Layer: 8
   m_Name: BluePlayer
   m_TagString: Player
@@ -149,23 +148,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!114 &2499567519384580820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5112682148450533698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac063c02e79c43f4480eace7c65fa203, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myRigidBody: {fileID: 6332119305385865987}
-  mySpriteRenderer: {fileID: 8380602477846467671}
-  myCollider: {fileID: 842218326068427415}
-  flapStrength: 5.2
-  logic: {fileID: 0}
-  fallMultiplier: 2
-  cooldown: 2
-  transformVariable: {fileID: 3268671171172585482}

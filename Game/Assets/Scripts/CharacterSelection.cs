@@ -1,32 +1,36 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CharacterSelection : MonoBehaviour
 {
-    public GameObject[] characters;
-    public int selectedCharacter = 0;
+    [SerializeField] private Sprite[] characters;
+    [SerializeField] private int selectedCharacter = 0;
+    [SerializeField] private Image playerSprite;
 
+    void Awake()
+    {
+        playerSprite.sprite = characters[selectedCharacter];
+    }
     public void NextCharacter()
     {
-        characters[selectedCharacter].SetActive(false);
         selectedCharacter = (selectedCharacter + 1) % characters.Length;
-        characters[selectedCharacter].SetActive(true);
+        playerSprite.sprite = characters[selectedCharacter];
     }
 
     public void PreviousCharacter()
     {
-        characters[selectedCharacter].SetActive(false);
         selectedCharacter--;
         if (selectedCharacter < 0)
         {
             selectedCharacter += characters.Length;
         }
-        characters[selectedCharacter].SetActive(true);
+        playerSprite.sprite = characters[selectedCharacter];
     }
 
     public void StartGame()
     {
-        PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
+        PlayerPrefs.SetInt("SelectedCharacter", selectedCharacter);
         SceneManager.LoadScene("Game");
     }
 }

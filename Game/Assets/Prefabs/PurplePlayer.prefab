@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5364691874504999283}
   - component: {fileID: 3986946351499516078}
   - component: {fileID: 7511261505879541990}
-  - component: {fileID: 364888884751716069}
   m_Layer: 8
   m_Name: PurplePlayer
   m_TagString: Player
@@ -149,23 +148,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!114 &364888884751716069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 446313765057325458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac063c02e79c43f4480eace7c65fa203, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myRigidBody: {fileID: 3986946351499516078}
-  mySpriteRenderer: {fileID: 5364691874504999283}
-  myCollider: {fileID: 7511261505879541990}
-  flapStrength: 5.2
-  logic: {fileID: 0}
-  fallMultiplier: 2
-  cooldown: 2
-  transformVariable: {fileID: 5969550706234468166}

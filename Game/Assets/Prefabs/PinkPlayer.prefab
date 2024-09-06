@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1958713760210185355}
   - component: {fileID: 7020263567244187409}
   - component: {fileID: 1516287323186086487}
-  - component: {fileID: 7917639799290254720}
   m_Layer: 8
   m_Name: PinkPlayer
   m_TagString: Player
@@ -149,23 +148,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!114 &7917639799290254720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6401645454755778344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac063c02e79c43f4480eace7c65fa203, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myRigidBody: {fileID: 7020263567244187409}
-  mySpriteRenderer: {fileID: 1958713760210185355}
-  myCollider: {fileID: 1516287323186086487}
-  flapStrength: 5.2
-  logic: {fileID: 0}
-  fallMultiplier: 2
-  cooldown: 2
-  transformVariable: {fileID: 3353299115729231309}
