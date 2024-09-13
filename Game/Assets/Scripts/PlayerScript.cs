@@ -11,12 +11,14 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Rigidbody2D myRigidBody;
 
     public int health = 3;
+    public bool invincible = false;
+    public float width;
+
     [SerializeField] private float jumpStrength = 5.5f;
     [SerializeField] private int jumpCount = 0;
     [SerializeField] private bool alive = true;
     [SerializeField] private float fallMultiplier = 2.5f;
     [SerializeField] private float cooldown = 2;
-    [SerializeField] private bool invincible = false;
 
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private InputAction touchAction;
@@ -40,6 +42,7 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         spriteRenderer.sprite = characters[PlayerPrefs.GetInt("SelectedCharacter")];
+        width = spriteRenderer.bounds.size.x;
     }
 
     void OnEnable()
@@ -79,6 +82,7 @@ public class PlayerScript : MonoBehaviour
     {
         Vector2 position = new Vector2(transformVariable.position.x, transformVariable.position.y);
         Collider2D[] results = Physics2D.OverlapCircleAll(position, 0.45f);
+        Debug.Log(invincible);
         if (!invincible)
         {
             foreach (Collider2D collider in results)
@@ -90,13 +94,13 @@ public class PlayerScript : MonoBehaviour
                 }
                 else if (obj.layer == 9)
                 {
-
+                    obj.GetComponent<BrickMovement>().SetHit();
                     if (health > 0)
                     {
                         LoseHealth(1);
                         if (health == 0)
                         {
-                            LogicManager.Instance.gameOver();
+                            LogicManager.Instance.GameOver();
                             alive = false;
                         }
                         else

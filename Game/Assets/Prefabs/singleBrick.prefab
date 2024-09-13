@@ -49,6 +49,10 @@ MonoBehaviour:
   moveSpeed: 4
   deletion: -10
   spawnScript: {fileID: 0}
+  hit: 0
+  survived: 0
+  spriteR: {fileID: 1156901436968483365}
+  width: 0
 --- !u!212 &1156901436968483365
 SpriteRenderer:
   m_ObjectHideFlags: 0

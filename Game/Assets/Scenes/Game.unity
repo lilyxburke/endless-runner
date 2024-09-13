@@ -206,8 +206,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1913223660}
-        m_TargetAssemblyTypeName: LogicScript, Assembly-CSharp
-        m_MethodName: quitGame
+        m_TargetAssemblyTypeName: LogicManager, Assembly-CSharp
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5654,8 +5654,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1913223660}
-        m_TargetAssemblyTypeName: LogicScript, Assembly-CSharp
-        m_MethodName: restartGame
+        m_TargetAssemblyTypeName: LogicManager, Assembly-CSharp
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6455,7 +6455,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7481871c97ef8fc4ab72e54a6dbb41bd, type: 3}
   transformVariable: {fileID: 2066200508}
   myRigidBody: {fileID: 2066200510}
-  health: 1
+  health: 3
   jumpStrength: 5.5
   jumpCount: 0
   alive: 1
