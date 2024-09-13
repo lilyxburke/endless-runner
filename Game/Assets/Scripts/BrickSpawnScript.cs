@@ -1,27 +1,17 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
-
 public class BrickSpawnScript : MonoBehaviour
 {
-    public GameObject singleBrick;
-    public GameObject doubleTallBrick;
-    public GameObject doubleSingleBrick;
-    public GameObject longBrick;
-    public Transform transformVariable;
-    public GameObject[][] blockOptions;
+    [SerializeField] private GameObject[] blockOptions;
+    [SerializeField] private ObjectPooler objectPooler;
 
     public bool stopSpawn;
-    public float spawnRate = 1;
-    private float timer = 0;
-    public float spawnOffset = 4;
-    public float moveSpeed = 4;
+    public float moveSpeed;
+    [SerializeField] private float spawnRate;
+    [SerializeField] private float timer;
+    [SerializeField] private float spawnOffset;
 
-    void Start()
-    {
-        spawnBrick();
-    }
-
-    void Update()
+    private void Update()
     {
 
         if (timer < spawnRate)
@@ -37,49 +27,26 @@ public class BrickSpawnScript : MonoBehaviour
         }
 
     }
-    void spawnBrick()
+    private void spawnBrick()
     {
-        GameObject brick;
-        int choice = Random.Range(1, 5);
-        transformVariable.position = new Vector3(transform.position.x, -1.22f, transform.position.z);
-        switch (choice)
-        {
-            case 1:
-                brick = singleBrick;
-                transformVariable.position = new Vector3(transform.position.x, -1.38f , transform.position.z);
-                break;
-            case 2:
-                brick = doubleTallBrick;
-                break;
-            case 3:
-                brick = doubleSingleBrick;
-                break;
-            case 4:
-                brick = longBrick;
-                break;
-            default:
-                brick = singleBrick;
-                break;
-        }
-
+        int choice = Random.Range(0, 4);
+        string name = blockOptions[choice].name.Replace("Clone", "");
+        
         float smallestDistance = transform.position.x - spawnOffset;
         float largestDistance = transform.position.x + spawnOffset;
 
         float x = Random.Range(smallestDistance, largestDistance);
+        Vector3 spawnPosition = new Vector3(x, blockOptions[choice].transform.position.y, 0);
 
-        Vector3 spawnPosition = new Vector3(x, transform.position.y, 0);
-
-        if (CanSpawnHere(spawnPosition))
+        if (CanSpawnHere(spawnPosition, blockOptions[choice]))
         {
-            Instantiate(brick, spawnPosition, transform.rotation);
+            objectPooler.SpawnBrick(name, spawnPosition);
         }
-
     }
 
-    public bool CanSpawnHere(Vector3 spawnPosition)
+    private bool CanSpawnHere(Vector3 spawnPosition, GameObject obj)
     {
-
-        Collider2D[] intersect = Physics2D.OverlapCircleAll(spawnPosition, 0.2f);
+        Collider2D[] intersect = Physics2D.OverlapCircleAll(spawnPosition, ((obj.GetComponent<BrickObject>().width / 2) + 0.1f));
         if(intersect.Length == 0)
         {
             return true;
@@ -89,6 +56,7 @@ public class BrickSpawnScript : MonoBehaviour
             return false;
         }
     }
+
     public void IncreaseSpeed()
     {
 

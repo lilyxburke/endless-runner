@@ -47,12 +47,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
-  deletion: -10
-  spawnScript: {fileID: 0}
+  deletion: -7
   hit: 0
   survived: 0
-  spriteR: {fileID: 4959896837526341682}
   width: 0
+  spawnScript: {fileID: 0}
+  spriteR: {fileID: 4959896837526341682}
+  objectPooler: {fileID: 0}
 --- !u!212 &4959896837526341682
 SpriteRenderer:
   m_ObjectHideFlags: 0

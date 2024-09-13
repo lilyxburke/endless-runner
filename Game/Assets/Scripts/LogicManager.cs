@@ -14,7 +14,7 @@ public class LogicManager : MonoBehaviour
     [SerializeField] private BrickSpawnScript spawnScript;
     [SerializeField] private AudioSource dingSFX;
 
-    public static LogicManager instance { get; private set; }
+    private static LogicManager instance;
     public static LogicManager Instance
     {
         get
@@ -22,14 +22,14 @@ public class LogicManager : MonoBehaviour
             return instance;
         }
     }
-    void Awake()
+    private void Awake()
     {
         if (instance == null)
         {
             instance = this;
         }
     }
-    void Start()
+    private void Start()
     {
         spawnScript = GameObject.FindGameObjectWithTag("Spawn").GetComponent<BrickSpawnScript>();
         highScore = PlayerPrefs.GetInt("HighScore");

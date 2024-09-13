@@ -23,7 +23,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private InputAction touchAction;
 
-    public static PlayerScript instance { get; private set; }
+    private static PlayerScript instance;
     public static PlayerScript Instance
     {
         get
@@ -31,7 +31,7 @@ public class PlayerScript : MonoBehaviour
             return instance;
         }
     }
-    void Awake()
+    private void Awake()
     {
         if (instance == null)
         {
@@ -39,19 +39,19 @@ public class PlayerScript : MonoBehaviour
         }
         touchAction = playerInput.actions["Jump"];
     }
-    void Start()
+    private void Start()
     {
         spriteRenderer.sprite = characters[PlayerPrefs.GetInt("SelectedCharacter")];
         width = spriteRenderer.bounds.size.x;
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         touchAction.Enable();
         touchAction.performed += JumpPressed;
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         touchAction.Disable();
         touchAction.performed -= JumpPressed;
@@ -72,17 +72,10 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 0.45f);
-    }
-
-    void Update()
+    private void Update()
     {
         Vector2 position = new Vector2(transformVariable.position.x, transformVariable.position.y);
         Collider2D[] results = Physics2D.OverlapCircleAll(position, 0.45f);
-        Debug.Log(invincible);
         if (!invincible)
         {
             foreach (Collider2D collider in results)
@@ -94,7 +87,7 @@ public class PlayerScript : MonoBehaviour
                 }
                 else if (obj.layer == 9)
                 {
-                    obj.GetComponent<BrickMovement>().SetHit();
+                    obj.GetComponent<BrickObject>().SetHit();
                     if (health > 0)
                     {
                         LoseHealth(1);
